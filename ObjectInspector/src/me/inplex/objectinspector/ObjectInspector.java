@@ -18,9 +18,7 @@
 
 package me.inplex.objectinspector;
 
-import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -184,17 +182,6 @@ public class ObjectInspector {
 	public void stop() throws InterruptedException {
 		this.running = false;
 		this.thread.join();
-	}
-
-	public static void main(String[] args) throws Exception {
-		Point p = new Point(1, 2);
-		ObjectInspector oi = new ObjectInspector(new AtomicReference<Object>(p));
-		oi.start();
-		Thread.sleep(40);
-		p.x = 1337;
-		p.y = 3100;
-		Thread.sleep(40);
-		System.out.println(Arrays.toString(oi.getChanges().toArray()));
 	}
 
 }
